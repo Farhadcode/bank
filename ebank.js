@@ -16,3 +16,4 @@ document.getElementById('submitBtn').addEventListener('click',SubmitData= ()=>{
         
     }
 })
+

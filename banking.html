@@ -18,15 +18,15 @@
                 <div class="grid grid-cols-3 gap-4  mx-4">
                     <div class="bg-green-500  p-8 rounded text-white"> 
                         <h3 class="text-2xl">Deposit</h3>
-                        <h4 class="text-4xl">$00</h4>
+                        <h4  class="text-4xl">$<span id="update-deposit">00</span></h4>
                     </div>
                     <div class="bg-blue-500  p-8 rounded text-white"> 
                         <h3 class="text-2xl">Withdraw</h3>
-                        <h4 class="text-4xl">$00</h4>
+                        <h4  class="text-4xl">$<span id="update-withdraw">00</span> </h4>
                     </div>
                     <div class="bg-yellow-500  p-8 rounded text-white"> 
                         <h3 class="text-2xl">Balance</h3>
-                        <h4 class="text-4xl">$1240</h4>
+                        <h4 class="text-4xl">$<span id="balance-total">1240</span></h4>
                     </div>
                 </div>     
         </section>
@@ -53,13 +53,8 @@
         </section>
     </main>
 
-    <script>
-        document.getElementById('depositBtn').addEventListener('click',depositFuntion = ()=>{
+   <script src="amount.js"></script>
+        
 
-            const depositInput = document.getElementById('deposit-submit');
-            const depositAmount = depositInput.value;
-            console.log(depositAmount);
-        })
-    </script>
 </body>
 </html>
