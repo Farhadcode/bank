@@ -13,9 +13,18 @@ function getUpdat(updateID , newAmount) {
    return depositTotal;
 }
 
-function updatTotalBalance(newAmount,isAmount) {
-    const balanceTotal = document.getElementById('balance-total');
+function getCurrentBalance() {
+    const balanceTotal = document.getElementById("balance-total");
     const previousTotalAmount = balanceTotal.innerText;
+    return previousTotalAmount;
+ }
+
+function updatTotalBalance(newAmount,isAmount) {
+      
+    const balanceTotal = document.getElementById('balance-total');
+    //  const previousTotalAmount = balanceTotal.innerText;
+
+   const previousTotalAmount = getCurrentBalance() ;
     
     if(isAmount == true){
         const presentTotalAmount = parseFloat(previousTotalAmount) + parseFloat(newAmount);
@@ -26,21 +35,41 @@ function updatTotalBalance(newAmount,isAmount) {
         balanceTotal.innerText = presentTotalAmount;
     }
   return balanceTotal;
+
+//    function getCurrentBalance() {
+//     const balanceTotal = document.getElementById("balance-total");
+//     const previousTotalAmount = balanceTotal.innerText;
+//     return previousTotalAmount;
+//  }
    
 }
 
 
 document.getElementById('depositBtn').addEventListener('click',depositFuntion = ()=>{
   
-    const newDepositAmount = getInputValue('deposit-submit');
+    const depositAmount = getInputValue('deposit-submit');
+    
+       if (depositAmount > 0 ) {
+        getUpdat('update-deposit' , depositAmount);
+        updatTotalBalance(depositAmount,true);
+       }
 
-    getUpdat('update-deposit' , newDepositAmount);
-    updatTotalBalance(newDepositAmount,true);
+
+   
 });
 
 document.getElementById('withdrawBtn').addEventListener('click',withdrawFuntion =() =>{
 
-    const newWithdrawAmount = getInputValue('withdraw-sibmet');
-    getUpdat('update-withdraw', newWithdrawAmount);
-    updatTotalBalance( newWithdrawAmount ,false);
+    const withdrawAmount = getInputValue('withdraw-sibmet');
+    //   const currentBalance = getCurrentBalance();
+   
+    
+      
+        if (withdrawAmount > 0) {
+
+          getUpdat('update-withdraw', withdrawAmount);
+          updatTotalBalance( withdrawAmount ,false);
+       }
+
+    
 });
