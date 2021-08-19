@@ -5,7 +5,7 @@ function getInputValue(inputId){
      return newInputAmount;
 }
 
-function getUpdat(updateID , newAmount) {
+function getUpdatField(updateID , newAmount) {
     const depositTotal = document.getElementById(updateID);
     const previousAmount = depositTotal.innerText;
     const presentTotal =parseFloat (previousAmount) +parseFloat(newAmount) ;
@@ -15,7 +15,8 @@ function getUpdat(updateID , newAmount) {
 
 function getCurrentBalance() {
     const balanceTotal = document.getElementById("balance-total");
-    const previousTotalAmount = balanceTotal.innerText;
+    const previousTotalText = balanceTotal.innerText;
+    const  previousTotalAmount = parseFloat(previousTotalText);
     return previousTotalAmount;
  }
 
@@ -27,20 +28,13 @@ function updatTotalBalance(newAmount,isAmount) {
    const previousTotalAmount = getCurrentBalance() ;
     
     if(isAmount == true){
-        const presentTotalAmount = parseFloat(previousTotalAmount) + parseFloat(newAmount);
-        balanceTotal.innerText = presentTotalAmount;
+        balanceTotal.innerText   = previousTotalAmount + parseFloat( newAmount);
+       
     }
     else{
-        const presentTotalAmount = parseFloat(previousTotalAmount) - parseFloat(newAmount);
-        balanceTotal.innerText = presentTotalAmount;
+        balanceTotal.innerText = previousTotalAmount - parseFloat( newAmount);
+       
     }
-  return balanceTotal;
-
-//    function getCurrentBalance() {
-//     const balanceTotal = document.getElementById("balance-total");
-//     const previousTotalAmount = balanceTotal.innerText;
-//     return previousTotalAmount;
-//  }
    
 }
 
@@ -50,7 +44,7 @@ document.getElementById('depositBtn').addEventListener('click',depositFuntion = 
     const depositAmount = getInputValue('deposit-submit');
     
        if (depositAmount > 0 ) {
-        getUpdat('update-deposit' , depositAmount);
+        getUpdatField('update-deposit' , depositAmount);
         updatTotalBalance(depositAmount,true);
        }
 
@@ -61,15 +55,16 @@ document.getElementById('depositBtn').addEventListener('click',depositFuntion = 
 document.getElementById('withdrawBtn').addEventListener('click',withdrawFuntion =() =>{
 
     const withdrawAmount = getInputValue('withdraw-sibmet');
-    //   const currentBalance = getCurrentBalance();
+      const currentBalance = getCurrentBalance();
    
     
-      
-        if (withdrawAmount > 0) {
-
-          getUpdat('update-withdraw', withdrawAmount);
-          updatTotalBalance( withdrawAmount ,false);
+       if (withdrawAmount>0 && withdrawAmount < currentBalance) {
+          getUpdatField('update-withdraw', withdrawAmount);
+           updatTotalBalance( withdrawAmount ,false);
        }
-
+       if( withdrawAmount > currentBalance){
+           console.log('You Balance not enough');
+       }
+    
     
 });
