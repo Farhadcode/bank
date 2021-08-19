@@ -11,7 +11,7 @@ document.getElementById('submitBtn').addEventListener('click',SubmitData= ()=>{
     // console.log(userPassword);
 
     if ( userEmail == 'ebank@gmail.com' &&  userPassword =='password') {
-        console.log('valide user');
+        // console.log('valide user');
         window.location.href = 'banking.html';
         
     }
