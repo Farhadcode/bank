@@ -20,12 +20,25 @@ function updataAmonut(updateId, amount) {
     document.getElementById(updateId).innerText = total;
 
 }
+/*
+function newUpdateBalance(amount) {
+    const dep = getInnerTextValue('update-deposit');
+    const wit = getInnerTextValue('update-withdraw');
+    const bal = getInnerTextValue('balance-total');
+    const newBalance = dep - wit + bal;
+    document.getElementById('balance-total').innerText = newBalance;
+}
+*/
+
 
 function updateBalance(amount, isAdding) {
-    // const balanceTag = ;
-    // const balanceValue = balanceTag.innerText;
-    // parseFloat(balanceValue);
+
     const previousBalance = getInnerTextValue('balance-total')
+    //const balance = getInnerTextValue('balance-total')
+    //console.log(balance);
+    // const depBalance = getInnerTextValue('update-deposit');
+    // const witBalance = getInnerTextValue('update-withdraw');
+    // const newBalance = balance + (depBalance + amount) - (witBalance - amount);
 
     // 2nd brick ar moday thkau kon variable use kora jay na
     //so let use kortay hobay moust be
@@ -41,10 +54,12 @@ function updateBalance(amount, isAdding) {
 }
 
 
+
 document.getElementById('depositBtn').addEventListener('click', function () {
     const amount = getInputValue('deposit-submit');
     if (amount > 0) {
         updataAmonut('update-deposit', amount)
+        // newUpdateBalance(amount)
         updateBalance(amount, true)
 
     }
@@ -57,6 +72,7 @@ document.getElementById('withdrawBtn').addEventListener('click', function () {
     const balance = getInnerTextValue('balance-total');
     if (amount > 0 && amount <= balance) {
         updataAmonut('update-withdraw', amount)
+        //newUpdateBalance(amount)
         updateBalance(amount, false);
 
     }
